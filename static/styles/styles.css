@@ -1,0 +1,43 @@
+*
+{
+    margin: 0;
+    box-sizing: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+nav
+{
+    display: flex;
+    height: 10%;
+    align-items: center;
+    justify-content: center;
+    background: #2d394b
+}
+nav ul
+{
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+    color: white;
+}
+nav ul li a{
+    text-decoration: none;
+    color: #FFFF
+}
+.home
+{
+    height: 90%;
+    color: white;
+    background-color: #f2d13e;
+}
+.home img
+{
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+}
+.home h3
+{
+    text-align: center;
+    margin-top: 2rem;
+}

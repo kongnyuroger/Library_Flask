@@ -1,0 +1,16 @@
+{%extends 'base.html'%}
+{%block title%}Add-Book{%endblock%}
+
+{%block content%}
+    <h1>Add A book </h1>
+    <form action="{{url_for('create_book')}}">
+        <label for="name">name</label>
+        <input type="text" name="name" id="name"><br>
+        <label for="image">image</label>
+        <input type="image" name="image" id="image"><br>
+        <label for="description">Description</label>
+        <textarea  name="description" id="description"></textarea><br>
+        <label for="price">price</label>
+        <input type="number" name="price" id="price"><br>
+    </form>
+{%endblock%}

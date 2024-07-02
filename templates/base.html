@@ -2,9 +2,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
     <title>{%block title%}Library{%endblock%}</title>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="{{url_for('index')}}">Home</a></li>
+            <li><a href="{{url_for('create_book')}}">Add-book</a></li>
+            <li><a href="{{url_for('all_books')}}">books</a></li>
+            <li><a href="{{url_for('profile')}}">Dash</a></li>
+            <li><a href="{{url_for('login')}}">Login</a></li>
+            
+        </ul>
+    </nav>
     {%block content%}{%endblock%}
 </body>
 </html>
