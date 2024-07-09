@@ -3,6 +3,17 @@
 {%block title%}Profile{%endblock%}
 
 {%block content%}
-    <h1>profile page</h1>
+<h2 class="header">My Books</h2>
+<div class="books">
+    {% for book in books %}
+    <ul class="book">
+        <a href="{{ url_for('book_detail', book_id=book.id) }}"></a>
+        <img src="{{url_for('static',filename='images/cover1.jpg')}}" alt="cover img">
+        <h4>{{ book.name }}</h4>
+        <p class="genre">{{book.genre}}</p>
+    </ul>
+   
+    {% endfor %}
+</div class="books">
 {%endblock%}
 

@@ -3,5 +3,21 @@
 {%block title%}ALL{%endblock%}
 
 {%block content%}
-    <h1>All Books page</h1>
+<h2 class="header">All Books</h2>
+<ul class="books">
+    {% for book in books %}
+    <div  class="book">
+        <a href="{{ url_for('book_detail', book_id=book.id) }}"></a>
+        <img src= "{{ img }}"  class="cover-img" alt="cover img">
+        <h4>{{ book.name }}</h4>
+        <p class="genre">{{book.genre}}</p>
+       
+    </div>
+    {% endfor %}
+    <button onclick="getRamdomImg()"> click me</button>
+</ul>
+<p id="demo">t</p>
+<script src="{{url_for('static',filename='js/app.js')}}"></script>
 {%endblock%}
+
+

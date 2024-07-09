@@ -4,14 +4,14 @@
 
 {%block content%}
 <div class="form_container">
-    <form action="{{url_for('login')}}" method="post">
-        <h1>Log In </h1>
+    <form action="{{url_for('register')}}" method="post">
+        <h1>Register </h1>
         <label for="name">Name</label>
         <input type="text" name="name" id="name">
         <label for="genre">Password</label>
-        <input type="password" name="password" id="password">
+        <input type="text" name="password" id="password">
         <button type="submit">Submit</button>
-        <a href="{{url_for('logout')}}" style="display: inline;">logout</a><a href="{{url_for('register')}}">create an acount</a>
+        <a href="{{url_for('login')}}">I have an acount</a>
     </form>
 </div>
 {%endblock%}

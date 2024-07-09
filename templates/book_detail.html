@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+
+{% block title%}detail{%endblock%}
+
+{%block content%}
+
+<div class="detail">
+        <h2>{{ book.name }}</h2>
+        <div  class="book">
+            <a href=""></a>
+            <img src="{{url_for('static',filename='images/cover1.jpg')}}" alt="cover img">
+            <h4>{{ book.name }}</h4>
+            <p class="genre">{{book.genre}}</p>
+        </div>
+        <div class="description">
+            <p><strong>Genre:</strong> {{ book.genre }}</p>
+            <p><strong>Price:</strong> ${{ book.price }}</p>
+            <p><strong>Description:</strong> {{ book.description }}</p>
+        </div>
+        <div class="links">
+            <a href="{{ url_for('profile') }}">Back to My Books</a>
+            <a href="{{ url_for('buy_form') }}">Buy Now</a>
+        </div>
+        
+    
+</div>
+
+{%endblock%}
