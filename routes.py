@@ -8,6 +8,7 @@ import random
 def register_routes(app, db, bcrypt,):
 
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+    app.config['UPLOAD_FOLDER'] = 'uploads'
 
     def allowed_file(filename):
         return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -23,23 +24,26 @@ def register_routes(app, db, bcrypt,):
         if request.method == 'POST':
             name = request.form['name']
             genre = request.form['genre']
-            file = request.form.get('cover_img')
+            file = request.files['cover_img']
             description = request.form['description']
             price = request.form['price']
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
                 filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
                 file.save(filepath)
-                cover_img = url_for('uploaded_file', filename=filename)
-            else:
-                return redirect(url_for('create_book'))  # Handle the case where no file is uploaded or file type is not allowed
-            user_id = session['user_id']
-            book = Book(name=name, genre=genre, cover_img=cover_img, description=description, price=price, user_id=user_id)
-            db.session.add(book)
-            db.session.commit()
-            return redirect(url_for('profile'))
+                user_id = session['user_id']
+                book = Book(name=name, genre=genre, description=description, filename=filename, filepath=filepath, price=price, user_id=user_id)
+                db.session.add(book)
+                db.session.commit()
+                return redirect(url_for('profile'))
+            
+            return redirect(url_for('create_book'))  # Handle the case where no file is uploaded or file type is not allowed
+    
         return render_template('create-book.html')
 
+    @app.route('/uploads/<filename>')
+    def uploaded_file(filename):
+        return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
     @app.route('/profile')
     def profile():
@@ -51,10 +55,8 @@ def register_routes(app, db, bcrypt,):
             
     @app.route('/all_books')
     def all_books():
-        images =  [url_for('static',filename='images/home.jpg'), url_for('static',filename='images/cover1.jpg')]
-        img = random.choice(images)
         books = Book.query.all()
-        return render_template('all_books.html', books=books , img = img)
+        return render_template('all_books.html', books=books )
     
     @app.route('/book/<int:book_id>')
     def book_detail(book_id):
@@ -81,7 +83,7 @@ def register_routes(app, db, bcrypt,):
             user = User(name=name, password=hashed_password)
             db.session.add(user)
             db.session.commit()
-            return redirect(url_for('login'))
+            return redirect(url_for('profile'))
         return render_template('register.html')
     
     @app.route('/logout')
@@ -96,3 +98,10 @@ def register_routes(app, db, bcrypt,):
     @app.route('/buy_form')
     def buy_form():
         return render_template('buy_form.html')
+    
+    @app.route('/delete/<int:id>', methods=['POST'])
+    def delete(id):
+        book = Book.query.get(id)
+        db.session.delete(book)
+        db.session.commit()  
+        return redirect(url_for('profile'))

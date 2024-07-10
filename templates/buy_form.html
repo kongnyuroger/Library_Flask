@@ -1,16 +1,16 @@
 {% extends 'base.html'%}
-{%block title%}pouches{%endblock%}
+{%block title%}purchase{%endblock%}
 
 {%block content%}
 <div class="form_container">
     <form>
         
         <label for="name">Name</label>
-        <input type="text" name="name" id="name">
+        <input type="text" name="name" id="name" required>
         <label for="email">Email</label>
-        <input type="text" name="Email" id="Email">
+        <input type="text" name="Email" id="Email" required>
         <label for="phone_num">Phone Num</label>
-        <input type="number" name="phone_num" id="phone_num">
+        <input type="number" name="phone_num" id="phone_num" required>
         <a href="{{url_for('buy_book')}}">Submit</a>
     </form>
 </div>

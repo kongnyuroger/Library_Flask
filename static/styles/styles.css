@@ -88,14 +88,14 @@ form a
 .book
 {
     position: relative;
-    width: fit-content;
+    width: 200px;
     border-radius: 3px;
     border: 1px solid black;
 }
 .book img
 {
-    width: 150px;
-    height: 200px;
+    width: 200px;
+    height: 100%;
     object-fit: cover;
     
 }
@@ -111,6 +111,17 @@ form a
 }
 .book a:hover{
     background-color: #f2d13e;
+}
+.book-text
+{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -75px;
+    width: 150px;
+    padding-bottom: 3px;
+    background-color: rgba(255, 255, 255, 0.386);
+    
 }
 .book h4, .book .genre
 {
