@@ -3,13 +3,24 @@
 {%block title%}login{%endblock%}
 
 {%block content%}
+{% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-messages">
+              {% for message in messages %}
+                <div class="alert alert-danger">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
 <div class="form_container">
-    <form action="{{url_for('register')}}" method="post">
+    <form action="{{url_for('register')}}" method="post" enctype="multipart/form-data">
         <h1>Register </h1>
         <label for="name">Name</label>
-        <input type="text" name="name" id="name">
+        <input type="text" name="name" id="name" required="required">
         <label for="genre">Password</label>
-        <input type="text" name="password" id="password">
+        <input type="password" name="password" id="password" required="required">
+        <label for="profile-pic">Please upload profile picture</label>
+        <input type="file" name="profile-pic"/>
         <button type="submit">Submit</button>
         <a href="{{url_for('login')}}">I have an acount</a>
     </form>

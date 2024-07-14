@@ -8,12 +8,17 @@
 </head>
 <body>
     <nav>
+        {% if 'user_name'  in session%}
+            <p>{{session['user_name']}}</p>
+        {%endif%}
         <ul>
             <li><a href="{{url_for('index')}}">Home</a></li>
-            <li><a href="{{url_for('create_book')}}">Add-book</a></li>
             <li><a href="{{url_for('all_books')}}">books</a></li>
-            <li><a href="{{url_for('profile')}}">Dash</a></li>
-            <li><a href="{{url_for('login')}}">Login</a></li>
+            {% if 'user_id'  in session%}
+            <li><a href="{{url_for('create_book')}}">Add-book</a></li>
+            <li><a href="{{url_for('profile')}}">Dash</a> </li>
+            {%endif%}
+            <li> {% if 'user_id' not in session%}<a href="{{url_for('login')}}">Login</a> {%else%} <a href="{{url_for('logout')}}">Logout</a>{%endif%}</li>
             
         </ul>
     </nav>

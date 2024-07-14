@@ -8,7 +8,7 @@ db = SQLAlchemy()
 
 def create_app():
     app =Flask(__name__,template_folder='templates')
-    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///./librarydb.db"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///librarydb.db"
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SECRET_KEY'] = 'my_secret_key'
     app.config['UPLOAD_FOLDER'] = 'uploads'

@@ -8,11 +8,18 @@
 
 nav
 {
+    position: relative;
     display: flex;
     height: 10%;
     align-items: center;
     justify-content: center;
     background: #2d394b
+}
+nav p
+{
+    position: absolute;
+    left: 60px;
+    color: #FFFF;
 }
 nav ul
 {
@@ -69,6 +76,7 @@ form button
     color: white;
     border: 0px;
     border-radius: 5px;
+    cursor: pointer;
 }
 form a
 {
@@ -99,7 +107,7 @@ form a
     object-fit: cover;
     
 }
-.book a
+.book .cover
 {
     position: absolute;
     width: 100%;
@@ -109,9 +117,10 @@ form a
     text-align: center;
     
 }
-.book a:hover{
+.book .cover:hover{
     background-color: #f2d13e;
 }
+
 .book-text
 {
     position: absolute;
@@ -120,8 +129,14 @@ form a
     margin-left: -75px;
     width: 150px;
     padding-bottom: 3px;
+    color: black;
     background-color: rgba(255, 255, 255, 0.386);
+    cursor: pointer; 
     
+    text-decoration: none;  
+}
+.book-text:hover{
+    background-color: #d4b22a64;
 }
 .book h4, .book .genre
 {

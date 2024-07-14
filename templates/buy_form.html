@@ -3,15 +3,15 @@
 
 {%block content%}
 <div class="form_container">
-    <form>
+    <form action="/buy_form/{{book.id}}" method = 'post'>
         
         <label for="name">Name</label>
-        <input type="text" name="name" id="name" required>
+        <input type="text" name="name" id="name" value="{{user.name}}" required>
         <label for="email">Email</label>
-        <input type="text" name="Email" id="Email" required>
+        <input type="email" name="email" id="email" required>
         <label for="phone_num">Phone Num</label>
         <input type="number" name="phone_num" id="phone_num" required>
-        <a href="{{url_for('buy_book')}}">Submit</a>
+        <button type="submit">submit</button>
     </form>
 </div>
 

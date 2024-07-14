@@ -7,7 +7,6 @@
 <div class="detail">
         <h2>{{ book.name }}</h2>
         <div  class="book">
-            <a href=""></a>
             <img src= "{{ url_for('uploaded_file', filename=book.filename) }}" alt="cover img">
             <div class="book-text">
                 <h4>{{ book.name }}</h4>
@@ -20,10 +19,18 @@
             <p><strong>Description:</strong> {{ book.description }}</p>
         </div>
         <div class="links">
+            {% if user_id%}
+            {% if user_id == book.user_id%}
             <form action="{{ url_for('delete', id=book.id) }}" method="post" style="display:inline;">
                 <button type="submit">Delete</button>
-              </form>
-            <a href="{{ url_for('buy_form') }}">Buy Now</a>
+            </form>
+            {%endif%}
+            {%endif%}
+            {% if user_id%}
+            <a href="{{ url_for('buy_form', id=book.id) }}">Buy Now</a>
+            {%else%}
+            <a href="{{ url_for('login') }}">Login to get book</a>
+            {%endif%}
         </div>
         
     

@@ -7,12 +7,12 @@
 <div class="books">
     {% for book in books %}
     <ul class="book">
-        <a href="{{ url_for('book_detail', book_id=book.id) }}"></a>
+        <a class="cover" href="{{ url_for('book_detail', book_id=book.id) }}"></a>
         <img src= "{{ url_for('uploaded_file', filename=book.filename) }}" alt="cover img">
-        <div class="book-text">
+        <a class="book-text" href="{{ url_for('book_detail', book_id=book.id) }}">
             <h4>{{ book.name }}</h4>
             <p class="genre">{{book.genre}}</p>
-        </div>
+        </a>
     </ul>
    
     {% endfor %}
